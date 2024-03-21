@@ -1,0 +1,41 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:vm="clr-namespace:TheatreSelling.ViewModels"
+        x:Class="TheatreSelling.Views.QueryWindow"
+        x:DataType="vm:QueryViewModel"
+        Title="Запросы">
+    
+    <Grid RowDefinitions="* 9*">
+        <WrapPanel Grid.Row="0" Orientation="Horizontal">
+            <Button
+                    Command="{Binding LoadDataAsyncRelayCommand}"
+                    CommandParameter="building"
+                    Content="Данные из таблицы building"/>
+            
+            <Button 
+                Command="{Binding LoadDataAsyncRelayCommand}"
+                CommandParameter="employee"
+                Content="Данные из таблицы employee"/>
+            
+            <Button Content="Данные из таблицы event"/>
+            <Button Content="Данные из таблицы house"/>
+            <Button Content="Данные из таблицы house_details"/>
+            <Button Content="Данные из таблицы payment"/>
+            <Button Content="Данные из таблицы payment_type"/>
+            <Button Content="Данные из таблицы play"/>
+            <Button Content="Данные из таблицы position"/>
+            <Button Content="Данные из таблицы price_policy"/>
+            <Button Content="Данные из таблицы sex"/>
+            <Button Content="Данные из таблицы ticket"/>
+
+        </WrapPanel>
+        
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding Data}"
+                  AutoGenerateColumns="True"/>
+    </Grid>
+    
+</Window>

@@ -9,27 +9,17 @@
         x:Class="TheatreSelling.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="TheatreSelling">
+        Title="Продажа билетов театра">
     
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <StackPanel Orientation="Vertical">
-        <TextBox Text="{Binding Text}"
-                 Margin="10"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Center"/>
-        <Button Command="{Binding AddItemAsyncCommand}">Добавить!</Button>
-        <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding NewItem}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+    <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+        <Button Command="{Binding OpenQueryCommand}" Margin="10">QUERIES</Button>
+        <Button Command="{Binding OpenCrudCommand}" Margin="10">CRUD</Button>
     </StackPanel>
 
 </Window>
