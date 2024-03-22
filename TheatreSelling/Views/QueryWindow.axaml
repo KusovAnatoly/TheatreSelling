@@ -13,28 +13,68 @@
             <Button
                     Command="{Binding LoadDataAsyncRelayCommand}"
                     CommandParameter="building"
-                    Content="Данные из таблицы building"/>
+                    Content="Данные из таблицы Building"/>
             
             <Button 
                 Command="{Binding LoadDataAsyncRelayCommand}"
                 CommandParameter="employee"
-                Content="Данные из таблицы employee"/>
+                Content="Данные из таблицы Employee"/>
             
-            <Button Content="Данные из таблицы event"/>
-            <Button Content="Данные из таблицы house"/>
-            <Button Content="Данные из таблицы house_details"/>
-            <Button Content="Данные из таблицы payment"/>
-            <Button Content="Данные из таблицы payment_type"/>
-            <Button Content="Данные из таблицы play"/>
-            <Button Content="Данные из таблицы position"/>
-            <Button Content="Данные из таблицы price_policy"/>
-            <Button Content="Данные из таблицы sex"/>
-            <Button Content="Данные из таблицы ticket"/>
+            <Button 
+                Command="{Binding LoadDataAsyncRelayCommand}"
+                CommandParameter="event"
+                Content="Данные из таблицы Event"/>
+            
+            <Button
+                Command="{Binding LoadDataAsyncRelayCommand}"
+                CommandParameter="house"
+                Content="Данные из таблицы House"/>
+            
+            <Button
+                Command="{Binding LoadDataAsyncRelayCommand}"
+                CommandParameter="house_details"
+                Content="Данные из таблицы House Details"/>
+            
+            <Button
+                Command="{Binding LoadDataAsyncRelayCommand}"
+                CommandParameter="payment"
+                Content="Данные из таблицы Payment"/>
+            
+            <Button
+                Command="{Binding LoadDataAsyncRelayCommand}"
+                CommandParameter="payment_type"
+                Content="Данные из таблицы Payment Type"/>
+            
+            <Button
+                Command="{Binding LoadDataAsyncRelayCommand}"
+                CommandParameter="play"
+                Content="Данные из таблицы Play"/>
+            
+            <Button
+                Command="{Binding LoadDataAsyncRelayCommand}"
+                CommandParameter="position"
+                Content="Данные из таблицы Position"/>
+            
+            <Button
+                Command="{Binding LoadDataAsyncRelayCommand}"
+                CommandParameter="price_policy"
+                Content="Данные из таблицы Price Policy"/>
+            
+            <Button
+                Command="{Binding LoadDataAsyncRelayCommand}"
+                CommandParameter="sex"
+                Content="Данные из таблицы Sex"/>
+            
+            <Button
+                Command="{Binding LoadDataAsyncRelayCommand}"
+                CommandParameter="ticket"
+                Content="Данные из таблицы Ticket"/>
 
         </WrapPanel>
         
         <DataGrid Grid.Row="1"
                   ItemsSource="{Binding Data}"
+                  MaxColumnWidth="500"
                   AutoGenerateColumns="True"/>
     </Grid>
     

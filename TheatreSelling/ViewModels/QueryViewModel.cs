@@ -39,31 +39,31 @@ public partial class QueryViewModel : ViewModelBase
                 await LoadEvent();
                 break;
             case "house":
-                await LoadBuilding();
+                await LoadHouse();
                 break;
             case "house_details":
-                await LoadBuilding();
+                await LoadHouseDetails();
                 break;
             case "payment":
-                await LoadBuilding();
+                await LoadPayment();
                 break;
             case "payment_type":
-                await LoadBuilding();
+                await LoadPaymentType();
                 break;
             case "play":
-                await LoadBuilding();
+                await LoadPlay();
                 break;
             case "position":
-                await LoadBuilding();
+                await LoadPosition();
                 break;
             case "price_policy":
-                await LoadBuilding();
+                await LoadPricePolicy();
                 break;
             case "sex":
-                await LoadBuilding();
+                await LoadSexes();
                 break;
             case "ticket":
-                await LoadBuilding();
+                await LoadTicket();
                 break;
         }
     }
@@ -124,10 +124,8 @@ public partial class QueryViewModel : ViewModelBase
         Data = items;
     }
     
-    
     private async Task LoadEvent()
     {
-        
         await using var conn = new NpgsqlConnection(ConnectionString);
         
         await conn.OpenAsync();
@@ -147,6 +145,241 @@ public partial class QueryViewModel : ViewModelBase
                 Description = reader.GetString(2),
                 HouseId = reader.GetInt32(3),
                 PlayId = reader.GetInt32(4)
+            };
+            items.Add(data);
+        }
+        Data = items;
+    }
+    
+    private async Task LoadHouse()
+    {
+        await using var conn = new NpgsqlConnection(ConnectionString);
+        
+        await conn.OpenAsync();
+        
+        await using var cmd = new NpgsqlCommand("SELECT * FROM public.house", conn);
+        
+        await using var reader = await cmd.ExecuteReaderAsync();
+        
+        var items = new List<House>();
+        
+        while (await reader.ReadAsync())
+        {
+            var data = new House()
+            {
+                HouseId = reader.GetInt32(0),
+                BuildingId = reader.GetInt32(1),
+                Title = reader.GetString(2)
+            };
+            items.Add(data);
+        }
+        Data = items;
+    }
+    
+    private async Task LoadHouseDetails()
+    {
+        await using var conn = new NpgsqlConnection(ConnectionString);
+        
+        await conn.OpenAsync();
+        
+        await using var cmd = new NpgsqlCommand("SELECT * FROM public.house_details", conn);
+        
+        await using var reader = await cmd.ExecuteReaderAsync();
+        
+        var items = new List<HouseDetails>();
+        
+        while (await reader.ReadAsync())
+        {
+            var data = new HouseDetails()
+            {
+                HouseDetailsId = reader.GetInt32(0),
+                HouseId = reader.GetInt32(1),
+                AreaTitle = reader.GetString(2),
+                NumberOfRows = reader.GetInt32(3),
+                NumberOfPlaces = reader.GetInt32(4),
+                PricePolicyId = reader.GetInt32(5)
+            };
+            items.Add(data);
+        }
+        Data = items;
+    }
+    
+    private async Task LoadPayment()
+    {
+        await using var conn = new NpgsqlConnection(ConnectionString);
+        
+        await conn.OpenAsync();
+        
+        await using var cmd = new NpgsqlCommand("SELECT * FROM public.payment", conn);
+        
+        await using var reader = await cmd.ExecuteReaderAsync();
+        
+        var items = new List<Payment>();
+        
+        while (await reader.ReadAsync())
+        {
+            var data = new Payment()
+            {
+                PaymentId = reader.GetInt32(0),
+                Date = reader.GetDateTime(1),
+                TicketId = reader.GetInt32(2),
+                Amount = reader.GetDouble(3),
+                PaymentTypeId = reader.GetInt32(4)
+            };
+            items.Add(data);
+        }
+        Data = items;
+    }
+    
+    private async Task LoadPaymentType()
+    {
+        await using var conn = new NpgsqlConnection(ConnectionString);
+        
+        await conn.OpenAsync();
+        
+        await using var cmd = new NpgsqlCommand("SELECT * FROM public.payment_type", conn);
+        
+        await using var reader = await cmd.ExecuteReaderAsync();
+        
+        var items = new List<PaymentType>();
+        
+        while (await reader.ReadAsync())
+        {
+            var data = new PaymentType()
+            {
+                PaymentTypeId = reader.GetInt32(0),
+                Name = reader.GetString(1),
+            };
+            items.Add(data);
+        }
+        Data = items;
+    }
+    
+    private async Task LoadPlay()
+    {
+        await using var conn = new NpgsqlConnection(ConnectionString);
+        
+        await conn.OpenAsync();
+        
+        await using var cmd = new NpgsqlCommand("SELECT * FROM public.play", conn);
+        
+        await using var reader = await cmd.ExecuteReaderAsync();
+        
+        var items = new List<Play>();
+        
+        while (await reader.ReadAsync())
+        {
+            var data = new Play()
+            {
+                PlayId = reader.GetInt32(0),
+                DirectorId = reader.GetInt32(1),
+                ManagerId = reader.GetInt32(2),
+                WriterId = reader.GetInt32(3),
+                Author = reader.GetString(4),
+                Cast = reader.GetString(5),
+                Title = reader.GetString(6)
+            };
+            items.Add(data);
+        }
+        Data = items;
+    }
+    
+    private async Task LoadPosition()
+    {
+        await using var conn = new NpgsqlConnection(ConnectionString);
+        
+        await conn.OpenAsync();
+        
+        await using var cmd = new NpgsqlCommand("SELECT * FROM public.position", conn);
+        
+        await using var reader = await cmd.ExecuteReaderAsync();
+        
+        var items = new List<Position>();
+        
+        while (await reader.ReadAsync())
+        {
+            var data = new Position()
+            {
+                PositionId = reader.GetInt32(0),
+                Title = reader.GetString(1)
+            };
+            items.Add(data);
+        }
+        Data = items;
+    }
+    
+    private async Task LoadPricePolicy()
+    {
+        await using var conn = new NpgsqlConnection(ConnectionString);
+        
+        await conn.OpenAsync();
+        
+        await using var cmd = new NpgsqlCommand("SELECT * FROM public.price_policy", conn);
+        
+        await using var reader = await cmd.ExecuteReaderAsync();
+        
+        var items = new List<PricePolicy>();
+        
+        while (await reader.ReadAsync())
+        {
+            var data = new PricePolicy()
+            {
+                PricePolicyId = reader.GetInt32(0),
+                Title = reader.GetString(1),
+                Price = reader.GetDouble(2)
+            };
+            items.Add(data);
+        }
+        Data = items;
+    }
+    
+    private async Task LoadSexes()
+    {
+        await using var conn = new NpgsqlConnection(ConnectionString);
+        
+        await conn.OpenAsync();
+        
+        await using var cmd = new NpgsqlCommand("SELECT * FROM public.sex", conn);
+        
+        await using var reader = await cmd.ExecuteReaderAsync();
+        
+        var items = new List<Sex>();
+        
+        while (await reader.ReadAsync())
+        {
+            var data = new Sex()
+            {
+                SexId = reader.GetInt32(0),
+                Name = reader.GetString(1)
+            };
+            items.Add(data);
+        }
+        Data = items;
+    }
+    
+    private async Task LoadTicket()
+    {
+        await using var conn = new NpgsqlConnection(ConnectionString);
+        
+        await conn.OpenAsync();
+        
+        await using var cmd = new NpgsqlCommand("SELECT * FROM public.ticket", conn);
+        
+        await using var reader = await cmd.ExecuteReaderAsync();
+        
+        var items = new List<Ticket>();
+        
+        while (await reader.ReadAsync())
+        {
+            var data = new Ticket()
+            {
+                TicketId = reader.GetInt32(0),
+                EventId = reader.GetInt32(1),
+                CashierId = reader.GetInt32(2),
+                CustomerId = reader.GetString(3),
+                CustomerName = reader.GetString(4),
+                CustomerEmail = reader.GetString(5),
+                CustomerPhone = reader.GetString(6)
             };
             items.Add(data);
         }
